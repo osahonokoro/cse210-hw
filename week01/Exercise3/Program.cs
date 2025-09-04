@@ -5,7 +5,8 @@ class Program
     static void Main()
     {
         Random randomGenerator = new Random();
-        int magicNumber = randomGenerator.Next(1, 101); // 1 to 100
+        // 1 to 100
+        int magicNumber = randomGenerator.Next(1, 101); 
 
         int guess = -1;
 
