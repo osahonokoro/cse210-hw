@@ -60,6 +60,8 @@ class Program
 
         Console.WriteLine($"Your grade is: {letter}{sign}");
 
+        // Word of encouragement to those who failed
+
         if (letter == "F")
         {
             Console.WriteLine("You failed the course! You can try harder next time. Thanks.");
