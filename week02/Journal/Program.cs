@@ -95,40 +95,64 @@ class Program
     static void Main(string[] args)
     {
         Journal journal = new Journal();
+        bool running = true;
 
         Console.WriteLine("📓 Welcome to the Journal App!");
 
-        // Load entries
-        Console.Write("Enter filename to load journal (e.g., journal.txt): ");
-        string loadFilename = Console.ReadLine();
-        journal.LoadFromFile(loadFilename);
-
-        // Display loaded entries
-        journal.DisplayEntries();
-
-        // Add a new entry
-        Console.Write("Would you like to add a new entry? (yes/no): ");
-        string response = Console.ReadLine().ToLower();
-        if (response == "yes")
+        while (running)
         {
-            Console.Write("Enter today's date (Using the format: yyyy-mm-dd e.g., 2025-09-18): ");
-            string date = Console.ReadLine();
+            Console.WriteLine("\nPlease select one of the following choices:");
+            Console.WriteLine("1. Write a new entry");
+            Console.WriteLine("2. Display the journal");
+            Console.WriteLine("3. Save the journal to a file");
+            Console.WriteLine("4. Load the journal from a file");
+            Console.WriteLine("5. Quit");
+            Console.Write("What would you like to do? ");
 
-            Console.Write("Enter your journal prompt: ");
-            string prompt = Console.ReadLine();
+            string choice = Console.ReadLine();
 
-            Console.Write("Enter your response: ");
-            string entryText = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                    Console.Write("Enter today's date (e.g., 2025-09-18): ");
+                    string date = Console.ReadLine();
 
-            Entry newEntry = new Entry(date, prompt, entryText);
-            journal.AddEntry(newEntry);
+                    Console.Write("Enter your journal prompt: ");
+                    string prompt = Console.ReadLine();
+
+                    Console.Write("Enter your response: ");
+                    string response = Console.ReadLine();
+
+                    Entry newEntry = new Entry(date, prompt, response);
+                    journal.AddEntry(newEntry);
+                    Console.WriteLine("✅ Entry added.");
+                    break;
+
+                case "2":
+                    journal.DisplayEntries();
+                    break;
+
+                case "3":
+                    Console.Write("Enter filename to save journal: ");
+                    string saveFilename = Console.ReadLine();
+                    journal.SaveToFile(saveFilename);
+                    break;
+
+                case "4":
+                    Console.Write("Enter filename to load journal: ");
+                    string loadFilename = Console.ReadLine();
+                    journal.LoadFromFile(loadFilename);
+                    break;
+
+                case "5":
+                    running = false;
+                    Console.WriteLine("👋 Goodbye!");
+                    break;
+
+                default:
+                    Console.WriteLine("⚠️ Invalid choice. Please enter a number between 1 and 5.");
+                    break;
+            }
         }
-
-        // Save updated journal
-        Console.Write("Enter filename to save journal: ");
-        string saveFilename = Console.ReadLine();
-        journal.SaveToFile(saveFilename);
-
-        Console.WriteLine("✅ Journal saved. Goodbye!");
     }
 }
