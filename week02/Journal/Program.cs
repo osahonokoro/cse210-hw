@@ -114,8 +114,8 @@ class Program
             switch (choice)
             {
                 case "1":
-                    Console.Write("Enter today's date (e.g., 2025-09-18): ");
-                    string date = Console.ReadLine();
+                    string date = DateTime.Now.ToString("yyyy-MM-dd");
+                    Console.WriteLine($"Date auto-filled: {date}");
 
                     Console.Write("Enter your journal prompt: ");
                     string prompt = Console.ReadLine();
@@ -125,7 +125,7 @@ class Program
 
                     Entry newEntry = new Entry(date, prompt, response);
                     journal.AddEntry(newEntry);
-                    Console.WriteLine("✅ Entry added.");
+                    Console.WriteLine("Entry added.");
                     break;
 
                 case "2":
