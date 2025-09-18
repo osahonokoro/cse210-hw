@@ -59,7 +59,6 @@ public class Journal
         Console.WriteLine($"Journal saved to '{filename}'.");
     }
 
-
     public void LoadFromFile(string filename)
     {
         if (!File.Exists(filename))
@@ -69,6 +68,8 @@ public class Journal
         }
 
         string[] lines = File.ReadAllLines(filename);
+        int loadedCount = 0;
+
         foreach (string line in lines)
         {
             string[] parts = line.Split('|');
@@ -76,14 +77,15 @@ public class Journal
             {
                 Entry entry = new Entry(parts[0], parts[1], parts[2]);
                 _entries.Add(entry);
+                loadedCount++;
             }
             else
             {
-                Console.WriteLine($"Invalid entry format: {line}");
+                Console.WriteLine($"⚠️ Skipped invalid entry format: {line}");
             }
         }
 
-        Console.WriteLine($"Loaded {lines.Length} entries from '{filename}'.");
+        Console.WriteLine($"✅ Loaded {loadedCount} entries from '{filename}'.");
     }
 
 }
@@ -109,7 +111,7 @@ class Program
         string response = Console.ReadLine().ToLower();
         if (response == "yes")
         {
-            Console.Write("Enter today's date (e.g., 2025-09-18): ");
+            Console.Write("Enter today's date (Using the format: yyyy-mm-dd e.g., 2025-09-18): ");
             string date = Console.ReadLine();
 
             Console.Write("Enter your journal prompt: ");
