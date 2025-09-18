@@ -92,6 +92,26 @@ public class Journal
 
 class Program
 {
+    static List<string> promptList = new List<string>
+    {
+        "What made you smile today?",
+        "Describe a moment you felt proud.",
+        "What’s something you’re grateful for?",
+        "What challenged you today?",
+        "Write about someone who inspires you.",
+        "What’s a goal you’re working toward?",
+        "How did you take care of yourself today?",
+        "What’s a memory that makes you laugh?",
+        "What’s something new you learned?",
+        "What’s a dream you want to pursue?"
+    };
+
+    static string GetRandomPrompt()
+    {
+        Random rand = new Random();
+        int index = rand.Next(promptList.Count);
+        return promptList[index];
+    }
     static void Main(string[] args)
     {
         Journal journal = new Journal();
@@ -117,8 +137,8 @@ class Program
                     string date = DateTime.Now.ToString("yyyy-MM-dd");
                     Console.WriteLine($"Date auto-filled: {date}");
 
-                    Console.Write("Enter your journal prompt: ");
-                    string prompt = Console.ReadLine();
+                    string prompt = GetRandomPrompt();
+                    Console.WriteLine($"Prompt: {prompt}");
 
                     Console.Write("Enter your response: ");
                     string response = Console.ReadLine();
