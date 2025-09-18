@@ -81,7 +81,7 @@ public class Journal
             }
             else
             {
-                Console.WriteLine($"⚠️ Skipped invalid entry format: {line}");
+                Console.WriteLine($"Skipped invalid entry format: {line}");
             }
         }
 
@@ -146,11 +146,11 @@ class Program
 
                 case "5":
                     running = false;
-                    Console.WriteLine("👋 Goodbye!");
+                    Console.WriteLine("Goodbye!");
                     break;
 
                 default:
-                    Console.WriteLine("⚠️ Invalid choice. Please enter a number between 1 and 5.");
+                    Console.WriteLine("Invalid choice. Please enter a number between 1 and 5.");
                     break;
             }
         }
